@@ -1,9 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My GitHub Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Toggle Website</title>
+    <style>
+        /* Define color variables for both themes */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --btn-bg: #f0f0f0;
+            --btn-text: #1a1a1a;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #f5f5f5;
+            --btn-bg: #2a2a2a;
+            --btn-text: #ffffff;
+        }
+
+        /* Basic Page Styling using the variables */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: sans-serif;
+            transition: background-color 0.3s, color 0.3s; /* Makes theme swap smooth */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Toggle Button Styling */
+        #theme-toggle {
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: var(--btn-bg);
+            color: var(--btn-text);
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, world! Welcome to my website.</h1>
+
+    <h1>Welcome to My Website</h1>
+    <p>Click the button below to swap between light and dark modes.</p>
+    
+    <!-- The Toggle Button -->
+    <button id="theme-toggle">🌙 Enable Dark Mode</button>
+
+    <!-- JavaScript to handle the toggle logic -->
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        
+        toggleButton.addEventListener('click', () => {
+            // Check current theme attribute on the <html> tag
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                // Switch to light mode
+                document.documentElement.removeAttribute('data-theme');
+                toggleButton.textContent = '🌙 Enable Dark Mode';
+            } else {
+                // Switch to dark mode
+                document.documentElement.setAttribute('data-theme', 'dark');
+                toggleButton.textContent = '☀️ Enable Light Mode';
+            }
+        });
+    </script>
+
 </body>
 </html>
